@@ -1,0 +1,17 @@
+git運用ルールについて
+
+
+[コメントについて]
+プレフィックスを利用すること
+feat: xxx という機能を追加
+fix: yyy で発生するバグを修正
+refactor: zzz の機能をリファクタ
+
+[branchについて]
+設計書はdesignDoumentsのbranchに置くこと
+
+キャメルケース（hogeName）でbranch名をつけること
+また、branchは画面ごとに分類する
+development branchに一度コミットし、その後masterにあげること
+
+
