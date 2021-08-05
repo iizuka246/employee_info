@@ -1,0 +1,142 @@
+body
+    {
+
+	 margin-top:100px;		/* topとテーブルの幅 */
+     padding:0px;         /* ページ全体のpadding */
+     text-align:center;   /* 下記のautoに未対応用のセンタリング */
+     background-color: #D9E5FF;
+    }
+
+#main
+    {
+	 padding-top: 20px;
+	 padding-bottom: 20px;
+	 font-size: 1.3em;
+     background-color: white;
+
+     margin: 20px;		  /* tableとボタンの距離 */
+     margin-left:auto;    /* 左側マージンを自動的に空ける */
+     margin-right:auto;   /* 右側マージンを自動的に空ける */
+
+
+     text-align:center;
+     width:500px;         /* tableの幅を決定する */
+     height:550px;			/* tableの高さを決定する */
+     border: solid 1px #0000ff;
+    }
+
+th{
+
+	text-align:left;
+	padding-left: 65px;
+}
+input:required{
+	background: pink;
+	font-size: 0.8em;
+}
+input:disabled{
+	background: silver;
+}
+
+select{
+	font-size: 0.9em;
+}
+
+/* ボタン設定 */
+*,
+*:before,
+*:after {
+  -webkit-box-sizing: inherit;
+  box-sizing: inherit;
+
+}
+
+.btn-square-so-pop {
+	font-size: 1.2em;
+  position: relative;
+  display: inline-block;
+  padding: 0.25em 2.5em;
+  text-decoration: none;
+  color: #FFF;
+  background: #00CCFF;/*色*/
+  border-radius: 4px;/*角の丸み*/
+  box-shadow: inset 0 2px 0 rgba(255,255,255,0.2), inset 0 -2px 0 rgba(0, 0, 0, 0.05);
+  font-weight: bold;
+  border: solid 1px black;/*線色*/
+}
+
+.btn-square-so-pop:active {
+  /*押したとき*/
+  box-shadow: 0 0 2px rgba(0, 0, 0, 0.30);
+}
+/* テキストボックス */
+.cp_iptxt {
+	position: relative;
+	width: 55%;
+	margin: 60px 3%;
+}
+.cp_iptxt input{
+	font: 15px/24px sans-serif;
+	box-sizing: border-box;
+	width: 60%;
+	padding: 0.3em;
+	transition: 0.3s;
+	letter-spacing: 1px;
+	/* color: #aaaaaa; */
+	border: 1px solid #1b2538;
+	border-radius: 4px;
+}
+.ef input[type='text']:focus {
+	border: 1px solid #da3c41;
+	outline: none;
+	box-shadow: 0 0 5px 1px rgba(218,60,65, .5);
+}
+
+
+/* セレクトボタン用 */
+/* .cp_ipselect {
+	overflow: hidden;
+	width: 90%;
+	margin: 2em auto;
+	text-align: center;
+}
+.cp_ipselect select {
+	width: 50%;
+	padding-right: 1em;
+	cursor: pointer;
+	text-indent: 0.01px;
+	text-overflow: ellipsis;
+	border: none;
+	outline: none;
+	background: transparent;
+	background-image: none;
+	box-shadow: none;
+	-webkit-appearance: none;
+	appearance: none;
+}
+.cp_ipselect select::-ms-expand {
+    display: none;
+}
+.cp_ipselect.cp_sl01 {
+	position: relative;
+	border: 1px solid #bbbbbb;
+	border-radius: 2px;
+	background: #ffffff;
+}
+.cp_ipselect.cp_sl01::before {
+	position: absolute;
+	top: 0.8em;
+	right: 0.9em;
+	width: 0;
+	height: 0;
+	padding: 0;
+	content: '';
+	border-left: 6px solid transparent;
+	border-right: 6px solid transparent;
+	border-top: 6px solid #666666;
+	pointer-events: none;
+}
+.cp_ipselect.cp_sl01 select {
+	padding: 8px 38px 8px 8px;
+	color: #666666;
+} */
