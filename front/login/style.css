@@ -1,0 +1,131 @@
+/*解像度が500px~1200pxの場合*/
+			@media screen and (min-width: 500px) and ( max-width: 1200px ) {
+				/*背景*/	
+				body {
+					background: linear-gradient(to top, rgba(217, 175, 217, 0.7) 0%, rgba(151, 217, 225, 0.7) 100%),url('company5.jpg');
+					background-size: 1400px 700px;
+				}						
+			}			
+      /*解像度が1201px以上の場合*/
+      @media ( min-width: 1201px ) {  
+        /*背景*/
+          body {
+            background: linear-gradient(to top, rgba(217, 175, 217, 0.7) 0%, rgba(151, 217, 225, 0.7) 100%),url('company5.jpg');
+          background-size: 1600px 900px;
+        }             
+      }
+
+			/*解像度が2500px以上の場合*/
+  			@media ( min-width: 2500px ) {	
+  				/*背景*/
+  				body {
+  					background: linear-gradient(to top, rgba(217, 175, 217, 0.7) 0%, rgba(151, 217, 225, 0.7) 100%),url('company5.jpg');
+					background-size: 2600px 1200px;
+				}			  			
+	  		}	  					
+			/*「社員情報管理システム」テキスト*/
+  			h1 {
+    			text-align: center;
+    			font-size : 40px;
+    			padding-top: 20px;
+  			}  			
+  			.table {
+	  				height: 450px;
+	  				background-color: rgba(255, 255, 255, 0.5);
+	  				border-radius: 10px;
+	  				padding-left: 45px;
+	  				padding-right: 45px; 
+	  		}  			  			
+  			/*解像度が500px~1200pxの場合*/
+  			@media screen and (min-width: 500px) and ( max-width: 1200px ) {				
+  				.table {
+	  				width : 40%;
+					margin-top : 50px;
+	  			}
+			}
+        /*解像度が1201px以上の場合*/
+        @media ( min-width: 1201px ) {  
+          .table {
+          width : 25%;
+        margin-top : 75px;
+          }             
+        }   
+
+  			
+  			/*解像度が2500px以上の場合*/
+  			@media ( min-width: 2500px ) {	
+  				.table {
+  				width : 15%;
+				margin-top : 75px;
+  				}			  			
+	  		}  			
+  			tr {
+  				padding-top: 10px;
+  			}
+  			th { /*「社員番号」と「パスワード」テキスト*/
+  				width: 25%;
+    			padding-top: 25px;
+    			padding-left: 10px;
+    			font-size: 20px;
+    			text-align: left;
+  			}			
+  					
+			td {
+ 				width: 100%;
+			}		 			
+  			
+  			　/*ログインボータン*/
+  			td.btn-center {
+  				padding-right: 0px;
+  				text-align: center;
+  			}
+  			/*パスワードを忘れました*/
+  			td.center-2 {
+  				height: 25px;
+  				text-align: center;
+  				text-decoration: underline;
+  				padding-right: 0px;
+  				padding-top: 10px;
+  			}
+  			/*テキストボックスデザイン*/
+  			.text{
+  				width: 100%; 
+    			padding: 10px 15px;
+    			height: 60px;
+    			border-radius: 3px;
+    			border: 2px solid #336699; 
+    			box-sizing: border-box; 
+  			}
+  			
+  			@media screen and (min-width: 500px) and ( max-width: 1200px ) {
+  				.text{
+  					font-size: 16px;
+  				}
+  			}
+  			
+  			/*テキストボックスデザイン*/
+  			@media ( max-width: 1201px ) {
+  				.text{
+	    			font-size: 14px;
+  				}
+  			}
+  			/*ログインボータンデザイン*/
+  			.btn-login {
+  				width: 100%;
+  				height: 45px;
+  				text-align: center;
+				appearance: none;
+				border: 0;
+				border-radius: 5px;
+				background: #4676D7;
+				color: #fff;
+				padding: 8px 16px;
+				font-size: 18px;
+  			}
+  			.btn-login:hover { 
+  				background: #1d49aa;
+			} 
+			.btn-login:focus {
+			  	outline: none;
+			  	box-shadow: 0 0 0 4px #cbd6ee;
+			}
