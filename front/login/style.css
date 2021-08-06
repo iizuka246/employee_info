@@ -1,13 +1,22 @@
-/*解像度が1024px以下の場合*/
-			@media ( max-width: 1024px ) {
+/*解像度が500px~1200pxの場合*/
+			@media screen and (min-width: 500px) and ( max-width: 1200px ) {
 				/*背景*/	
 				body {
 					background: linear-gradient(to top, rgba(217, 175, 217, 0.7) 0%, rgba(151, 217, 225, 0.7) 100%),url('company5.jpg');
 					background-size: 1400px 700px;
 				}						
 			}			
-			/*解像度が2500px以下の場合*/
-  			@media ( max-width: 2700px ) {	
+      /*解像度が1201px以上の場合*/
+      @media ( min-width: 1201px ) {  
+        /*背景*/
+          body {
+            background: linear-gradient(to top, rgba(217, 175, 217, 0.7) 0%, rgba(151, 217, 225, 0.7) 100%),url('company5.jpg');
+          background-size: 1600px 900px;
+        }             
+      }
+
+			/*解像度が2500px以上の場合*/
+  			@media ( min-width: 2500px ) {	
   				/*背景*/
   				body {
   					background: linear-gradient(to top, rgba(217, 175, 217, 0.7) 0%, rgba(151, 217, 225, 0.7) 100%),url('company5.jpg');
@@ -27,24 +36,24 @@
 	  				padding-left: 45px;
 	  				padding-right: 45px; 
 	  		}  			  			
-  			/*解像度が1024px以下の場合*/
-  			@media ( max-width: 1024px ) {				
+  			/*解像度が500px~1200pxの場合*/
+  			@media screen and (min-width: 500px) and ( max-width: 1200px ) {				
   				.table {
-	  				width : 30%;
+	  				width : 40%;
 					margin-top : 50px;
 	  			}
 			}
+        /*解像度が1201px以上の場合*/
+        @media ( min-width: 1201px ) {  
+          .table {
+          width : 25%;
+        margin-top : 75px;
+          }             
+        }   
 
-			/*解像度が2500px以下の場合*/
-  			@media ( max-width: 2200px ) {	
-  				.table {
-  				width : 20%;
-				margin-top : 75px;
-  				}			  			
-	  		}  			
   			
-  			/*解像度が2700px以下の場合*/
-  			@media ( max-width: 2700px ) {	
+  			/*解像度が2500px以上の場合*/
+  			@media ( min-width: 2500px ) {	
   				.table {
   				width : 15%;
 				margin-top : 75px;
@@ -88,14 +97,14 @@
     			box-sizing: border-box; 
   			}
   			
-  			@media ( max-width: 1024px ) {
+  			@media screen and (min-width: 500px) and ( max-width: 1200px ) {
   				.text{
   					font-size: 16px;
   				}
   			}
   			
   			/*テキストボックスデザイン*/
-  			@media ( max-width: 2700px ) {
+  			@media ( max-width: 1201px ) {
   				.text{
 	    			font-size: 14px;
   				}
