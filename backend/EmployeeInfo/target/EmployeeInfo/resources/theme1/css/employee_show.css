@@ -1,0 +1,87 @@
+* {
+  font-family: sans-serif; /* Change your font family */
+}
+
+.content-table {
+  border-collapse: collapse;
+  margin:90px 0 0 90px;
+  font-size: 0.9em;
+  min-width: 700px;
+  border-radius: 10px 10px 0 0;
+  overflow: hidden;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+}
+
+.content-table thead tr {
+  background-color: #009879;
+  color: #ffffff;
+  text-align: left;
+  font-weight: bolder;
+  font-size: 18px;
+}
+
+.content-table th,
+.content-table td {
+  padding: 12px 15px;
+  font-size:12px;
+}
+
+.content-table tbody tr {
+  border-bottom: 1px solid #dddddd;
+}
+
+.content-table tbody tr:nth-of-type(even) {
+  background-color: #f3f3f3;
+}
+
+.content-table tbody tr:last-of-type {
+  border-bottom: 2px solid #009879;
+}
+
+.content-table tbody tr.active-row {
+  font-weight: bold;
+  color: #009879;
+}
+#button1 {  
+	padding: 10px;
+	background-color:orange;
+	text-align: top;
+	color: #ffffff;
+	font-size:15px;
+	margin-bottom: -15%;
+	border-radius: 8px;
+	position:absolute;
+    top:0;
+    right:68%;
+	font-weight:bolder;
+	cursor:pointer;
+}
+#button1:hover{
+	background-color:grey;
+}
+#button2 {  
+	padding: 10px;
+	background-color:blue;
+	font-size:15px;
+	margin-bottom: -15%;
+	border-radius: 8px;
+	font-weight:bolder;
+	cursor:pointer;
+	color: #ffffff;
+}
+#button2:hover{
+	background-color:grey;
+}
+#button3 {  
+	padding: 10px;
+	background-color:red;
+	font-size:15px;
+	margin-bottom: -15%;
+	border-radius: 8px;
+	font-weight:bolder;
+	cursor:pointer;
+	color: #ffffff;
+}
+#button3:hover{
+	background-color:grey;
+}

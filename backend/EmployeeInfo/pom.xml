@@ -74,6 +74,8 @@
 			<artifactId>spring-security-config</artifactId>
 			<version>5.1.1.RELEASE</version>
 		</dependency>
+		<!-- jar is used for showing the server side validations in the spring 
+			framework -->
 		<dependency>
 			<groupId>org.hibernate.validator</groupId>
 			<artifactId>hibernate-validator</artifactId>

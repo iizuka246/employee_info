@@ -1,4 +1,5 @@
 eclipse.preferences.version=1
+encoding//src/main/webapp/WEB-INF/jsp/employee_add.jsp=UTF-8
 encoding//src/main/webapp/WEB-INF/jsp/employee_edit.jsp=UTF-8
-encoding//src/main/webapp/WEB-INF/jsp/login.jsp=UTF-8
 encoding//src/main/webapp/WEB-INF/jsp/user_info.jsp=UTF-8
+encoding//src/main/webapp/resources/theme1/css/login.css=UTF-8

@@ -1,24 +1,25 @@
-CREATE DATABASE springdb;
+CREATE DATABASE springdb DEFAULT CHARACTER SET utf8 COLLATE utf8_general_ci;
 
 CREATE TABLE USELOGIN(
 id INT(8) NOT NULL,
 password VARCHAR(10),
 PRIMARY KEY(id));
 
-CREATE TABLE EMPLOYEE(
+CREATE TABLE springdb.EMPLOYEE(
  id INT(8) NOT NULL,
- name VARCHAR(50) NOT NULL,
+ name VARCHAR(50) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
  age INT NOT NULL,
  gender INT NOT NULL,
  birthday DATE NOT NULL,
  tel VARCHAR(15) NOT NULL,
  address VARCHAR(100) NOT NULL,
- category VARCHAR(50) NOT NULL,
+ category VARCHAR(50) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
  joined_day DATE NOT NULL,
  admin_auth INT NOT NULL,
- PRIMARY KEY(id));
+ PRIMARY KEY(id)
+ )ENGINE = MyISAM;
 
 insert into uselogin
-(id,password) values("10000001","1111111111");
+(id,password) values("10000001","11111111");
 
 please login with above value

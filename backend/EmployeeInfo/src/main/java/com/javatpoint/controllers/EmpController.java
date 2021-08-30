@@ -1,10 +1,15 @@
 package com.javatpoint.controllers;
-
+import java.text.ParseException;
 import java.util.List;
 import java.util.Locale;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.MessageSource;
+import org.springframework.context.annotation.Scope;
 import org.springframework.dao.DuplicateKeyException;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -17,12 +22,14 @@ import com.javatpoint.beans.Emp;
 import com.javatpoint.dao.EmpDao;
 
 /**
- * 作成者 : エエティン クラス名 : EmpController 
+ * 作成者 : エエティン 
+ * クラス名 : EmpController 
  * 概要 : 社員情報コントローラ
  * 作成日 : 2021/08/02
- */
+*/
 
 @Controller
+@Scope("session")
 public class EmpController {
 	/**
 	 * xmlファイルからdaoを挿入する
@@ -53,13 +60,15 @@ public class EmpController {
 	 * @return ユーザ情報画面へ 遷移する
 	 */
 	@RequestMapping(value = "/login", method = RequestMethod.POST)
-	public String login(@ModelAttribute("userInfo") Emp emp, Model m) {
+	public String login(@ModelAttribute("userInfo") Emp emp, Model m, HttpServletRequest request) {
 		// データベース(UserLoginテーブル)情報を取得
 		boolean userFlag = dao.userLogin(emp);
 		// ログイン判定
 		if (userFlag) {
 			Emp userInfo = this.getUserInfo(emp.getId());
+			m.addAttribute("userInfo", userInfo);
 			m.addAttribute("command", userInfo);
+			request.getSession().setAttribute("userInfo",userInfo);
 			// ユーザ情報画面へ
 			return "user_info";
 		} else {
@@ -68,6 +77,35 @@ public class EmpController {
 			m.addAttribute("errorMsg", errorMsg);
 			return "login";
 		}
+	}
+	
+	/**
+	 * ログアウト処理
+	 * 
+	 * @param request 
+	 * @param     m 社員情報モデル
+	 * @return ユーザ情報画面へ 遷移する
+	 */
+	@RequestMapping(value = "/logout", method = RequestMethod.GET)
+	public String logout(HttpServletRequest request) {
+		HttpSession session = request.getSession();
+		session.removeAttribute("userInfo");
+        return "redirect:/init";
+	}
+	
+	/**
+	 *　ユーザ情報画面表示処理
+	 * 
+	 * @param request 
+	 * @param     m 社員情報モデル
+	 * @return ユーザ情報画面表示
+	 */
+	@RequestMapping(value = "/user_info", method = RequestMethod.GET)
+	public String user_info(Model m, HttpServletRequest request) {
+		Emp userInfo = (Emp) request.getSession().getAttribute("userInfo");
+		m.addAttribute("userInfo", userInfo);
+		m.addAttribute("command", userInfo);
+		return "user_info";
 	}
 
 	/**
@@ -114,21 +152,21 @@ public class EmpController {
 	 * 
 	 * @param emp 社員情報
 	 * @return 社員情報画面へ遷移する
+	 * @throws ParseException 
 	 */
 	@RequestMapping(value = "/save", method = RequestMethod.POST)
-	public String save(@ModelAttribute("empform") Emp emp, BindingResult result, Model m) {
-//		if (result.hasErrors()) {
-//			System.out.println("has errors " + result.getErrorCount());
-//			return "employee_add";
-//		}
+	public String save(@Valid @ModelAttribute("empform") Emp emp, BindingResult result, Model m) throws ParseException {
+		if (result.hasErrors()) {
+			return "employee_add";
+		}
 		try {
 			dao.saveEmployee(emp);
+			dao.saveUser(emp);
 		}catch (DuplicateKeyException e) {
 			String message = messagesource.getMessage("Duplicate.employeeForm.id", null, Locale.JAPAN);
 			m.addAttribute("duplicateKey",message);
 			return "employee_add";
 		}
-		dao.saveUser(emp);
 		return "redirect:/empshowform";
 	}
 
@@ -152,7 +190,7 @@ public class EmpController {
 	 */
 	@RequestMapping(value = "/editemp/{id}")
 	public String edit(@PathVariable int id, Model m) {
-		Emp emp = dao.getEmpById(id);
+		Emp emp = this.getUserInfo(id);
 		m.addAttribute("command", emp);
 		return "employee_edit";
 	}
@@ -161,9 +199,10 @@ public class EmpController {
 	 * 社員情報編集処理
 	 * @param emp　社員情報モデル
 	 * @return　社員情報一覧画面へ遷移する
+	 * @throws ParseException 
 	 */
 	@RequestMapping(value = "/editsave", method = RequestMethod.POST)
-	public String editsave(@ModelAttribute("emp") Emp emp) {
+	public String editsave(@ModelAttribute("emp") Emp emp) throws ParseException {
 		dao.update(emp);
 		return "redirect:/empshowform";
 	}
@@ -176,6 +215,7 @@ public class EmpController {
 	@RequestMapping(value = "/deleteemp/{id}", method = RequestMethod.GET)
 	public String delete(@PathVariable int id) {
 		dao.delete(id);
+		dao.deleteUser(id);
 		return "redirect:/empshowform";
 	}
 	

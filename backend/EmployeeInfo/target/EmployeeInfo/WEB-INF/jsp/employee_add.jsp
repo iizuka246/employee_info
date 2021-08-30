@@ -1,104 +1,327 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8;" pageEncoding="UTF-8" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <%@ page isELIgnored="false"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<!DOCTYPE html>
+<html lang="ja">
 <head>
-<link rel="stylesheet"
-	href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
-<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
-<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
-<link rel="stylesheet"
-	href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
-<style type="text/css">
-.errormsg {
-	color: red;
-}
-</style>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <title>社員情報追加画面</title>
+  <link href="<c:url value="/resources/css/base.css" />" rel="stylesheet">
+  <link href="<c:url value="/resources/css/user_info.css" />" rel="stylesheet">
+  <link href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" rel="stylesheet">
+  <script src="http://code.jquery.com/jquery-3.2.1.min.js"></script>
 <script>
-	$(function() {
-		$("#datepicker1").datepicker({
-			showOtherMonths : true,
-			selectOtherMonths : true,
-			dateFormat : 'yy/mm/dd'
-		});
-		$("#datepicker2").datepicker({
-			showOtherMonths : true,
-			selectOtherMonths : true,
-			dateFormat : 'yy/mm/dd',
-			yearRange : '0001:2021'
-		});
-	});
+    //サイドバー表示・非表示処理
+$(function(){
+  $('#up').click(function(){
+    $('.show').hide(100, function() {
+ 
+ $('.sidebar').show(500);
+});
+  });
+  $('#close').click(function(){
+    $('.sidebar').hide(500, function() {
+ 
+        $('.show').show(100);
+    });
+  });
+});
 </script>
-</head>
-<body>
-	<div class="container">
-		<h1>Add New Employee</h1>
-
-		<form:form method="post" action="save" modelAttribute="empform">
-			<table>
+  </head>
+  <body>
+<!-- ヘッダー-->
+<header class="header">
+    <p id="login_name" class="name"><c:out value="${sessionScope.userInfo.name}"/>様</p></p>
+    <button id="admin_button" class="adminButton" onclick="location.href='empshowform'">管理者ページへ</button>
+</header>
+<article>
+    <button id="up" class="show"><i style="font-size:35px; color:blue" class="far fa-arrow-alt-circle-right"></i></button>
+    <div id="sidebar" class="sidebar item">
+        <nav class="nav">
+        <ul>
+            <li class="nav-item"><i style = "font-size:25px;" class="fas fa-user-alt"></i><a id="user_info" href="/EmployeeInfo/user_info">ユーザ情報へ　</a></li>
+			<li class="nav-item"><i style = "font-size:25px;" class="fas fa-crown"></i><a id="admin_page" href="/EmployeeInfo/empshowform">管理者ページへ</a></li>
+            <li class="nav-item"><i style = "font-size:25px;" class="fas fa-door-open"></i><a id="logout" href="/EmployeeInfo/logout">ログアウト　　</a></li>
+        </ul>
+        </nav>
+        <p class="loginInfo">管理者権限でログインしています。</p>
+        <a href="#" id="close" class="backButton"><i style = "font-size:35px; color:#2C3539;" class="far fa-arrow-alt-circle-left"></i></a>
+    
+    </div>
+    <div class="content">
+      <!-- ここに各々のコンテンツを差し込む-->
+	  <form:form method="post" action="save" modelAttribute="empform">
+	  <p id="error">
+	  ${duplicateKey}
+	  <form:errors path="id" />
+	  <form:errors path="name" />
+	  <form:errors path="gender" />
+	  <form:errors path="age" />
+	  <form:errors path="birthday" />
+	  <form:errors path="tel" />
+	  <form:errors path="address" />
+	  <form:errors path="category" />
+	  <form:errors path="birthday_year" />
+	  <form:errors path="birthday_month" />
+	  <form:errors path="birthday_date" />
+	  <form:errors path="joined_day_year" />
+	  <form:errors path="joined_day_month" />
+	  <form:errors path="joined_day_date" />
+	  </p>
+		<!-- <table id="main"> -->
+	    <table >
 				<tr>
-				<div class="form-group">
-				<label>${duplicateKey}</label>
-					<td>社員番号 :</td>
-					<td><form:input path="id" /></td>
-					 <form:errors path="id"
-							cssClass="errormsg" />
-							</div>
+					<th>社員番号</th>
+					<td class="cp_iptxt">
+					 <form:input type="text" path="id" size="16" maxlength='8' placeholder="社員番号入力" />
+					</td>
+				</tr>
+	
+				<tr>
+					<th>職種</th>
+					<td class="cp_iptxt">
+					<form:input type="text" path="category" size="16" maxlength='8' placeholder="職種入力"  />
+					</td>
 				</tr>
 				<tr>
-					<div class="form-group">
-					<td>名前 :</td>
-					<td><form:input path="name" /></td>
-					<form:errors path="name" cssClass="errormsg" />
-					</div>
-				</tr>
-
-				<tr>
-					<div class="form-group">
-					<td>性別 :</td>
-					<td><form:input path="gender" /></td>
-					<form:errors path="gender" cssClass="errormsg" />
-					</div>
+					<th>性別</th>
+					<td >
+					<form:radiobutton path="gender" value="0" checked="checked"/>男
+                    <form:radiobutton path="gender" value="1" />女
+					</td>
 				</tr>
 				<tr>
-					<td>年齢 :</td>
-					<td><form:input path="age" /> <form:errors path="age"
-							cssClass="errormsg" /></td>
+					<th>名前</th>
+					<td class="cp_iptxt">
+					<form:input type="text" path="name" size="16" placeholder="氏名入力" />
+					</td>
 				</tr>
 				<tr>
-					<td>生年月日 :</td>
-					<td><form:input path="birthday" id="datepicker1" /></td>
+					<th>生年月日</th>
+					<td>
+					<form:select path="birthday_year" id="birthday_year" ></form:select>年
+					 <form:select path="birthday_month" id="birthday_month" ></form:select>月
+					 <form:select path="birthday_date" id="birthday_date" ></form:select>日
+					</td>
 				</tr>
 				<tr>
-					<td>連絡先 :</td>
-					<td><form:input path="tel" /></td>
+					<th>TEL</th>
+					<td class="cp_iptxt">
+					<form:input type="tel" path="tel" size="16" maxlength='12' placeholder="電話番号入力(数値のみ)" pattern="[\d]*" />
+					</td>
 				</tr>
 				<tr>
-					<td>メールアドレス :</td>
-					<td><form:input path="address" /></td>
+					<th>E-Mail</th>
+					<td class="cp_iptxt">
+					<form:input path="address" type="email" size="16" maxlength='25' placeholder="メールアドレス入力" />
+					</td>
 				</tr>
 				<tr>
-					<td>職業 :</td>
-					<td><form:input path="category" /></td>
+					<th>年齢</th>
+					<td>
+					<form:select path="age" id="age" ></form:select>歳
+					</td>
 				</tr>
 				<tr>
-					<td>入社日 :</td>
-					<td><form:input path="joined_day" id="datepicker2" /></td>
+					<th>入社日</th>
+					<td>
+					<form:select path="joined_day_year" id="joined_day_year" ></form:select>年
+					 <form:select path="joined_day_month" id="joined_day_month" ></form:select>月
+					 <form:select path="joined_day_date" id="joined_day_date" ></form:select>日
+					</td>
 				</tr>
 				<tr>
-					<td>パスワード :</td>
-					<td><form:input path="password" /></td>
+					<th>管理者権限</th>
+					<td>
+					<form:radiobutton path="admin_auth" value="0" checked="checked" />無
+					<form:radiobutton path="admin_auth" value="1" />有
+					</td>
 				</tr>
 				<tr>
-					<td>管理者情報 :</td>
-					<td><form:input path="admin_auth" /></td>
+					<th>パスワード</th>
+					<td class="cp_iptxt">
+					<form:input type="password" path="password" size="16" maxlength="12" placeholder="パスワード入力" />
+					</td>
 				</tr>
-				<tr>
-					<td></td>
-					<td><input type="submit" value="Save" /></td>
-				</tr>
-			</table>
+	
+		</table>
+			<input type="submit" class="btn-square-so-pop" value="登録">
+	
 		</form:form>
-	</div>
-</body>
+		<!-- 終了 ----------------------------------------------------------------------------------------->
+    </div>
+</article>
+
+  </body>
+</html>
+
+
+<!-- 生年月日 -->
+<script>
+	(function() {
+		  // ライブラリ
+		  const isLeapYear = year => (year % 4 === 0) && (year % 100 !== 0) || (year % 400 === 0);
+	
+		  const countDatesOfFeb = year => isLeapYear(year) ? 29 : 28;
+	
+		  const createOption = (id, startNum, endNum, current) => {
+			const selectDom = document.getElementById(id);
+			let optionDom = '';
+			const todayDate = new Date();
+			const year = today.getFullYear();
+			
+			for (let i = startNum-1; i <= endNum; i++) {
+				if(i === startNum-1){
+					if(id === 'birthday_year'){
+						if(${empform.birthday_year >= 1950} && ${empform.birthday_year <= year} ){
+							option = '<option value="' + ${empform.birthday_year} + '"hidden selected>' + ${empform.birthday_year} + '</option>';
+						}else{
+							option = '<option value="' + '' + '"hidden selected>' + '--' + '</option>';
+						}
+					}
+					
+				if(id === 'birthday_month'){
+					if(${empform.birthday_month >= 1 } && ${empform.birthday_month <= 12 }){
+						option = '<option value="' + ${empform.birthday_month}  + '"hidden selected>' + ${empform.birthday_month} + '</option>';
+					}else{
+						option = '<option value="' + '' + '"hidden selected>' + '--' + '</option>';
+					}
+				}
+					
+				if(id === 'birthday_date'){
+					if(${empform.birthday_date >= 1 } && ${empform.birthday_date <= 31 }){
+						option = '<option value="' + ${empform.birthday_date} + '"hidden selected>' + ${empform.birthday_date} + '</option>';
+					}else{
+						option = '<option value="' + '' + '"hidden selected>' + '--' + '</option>';
+					} 
+				}
+			}else if (i === current) {
+					option = '<option value="' + i + '" >' + i + '</option>';
+		    } else {
+					option = '<option value="' + i + '">' + i + '</option>';
+		    }
+			  optionDom += option;
+			}
+			selectDom.insertAdjacentHTML('beforeend', optionDom);
+		  }
+	
+		  // DOM
+		  const yearBox = document.getElementById('birthday_year');
+		  const monthBox = document.getElementById('birthday_month');
+		  const dateBox = document.getElementById('birthday_date');
+	
+		  // 日付データ
+		  const today = new Date();
+		  const thisYear = today.getFullYear();
+		  const thisMonth = today.getMonth() + 1;
+		  const thisDate = today.getDate();
+	
+		  let datesOfYear= [31, countDatesOfFeb(thisYear), 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
+	
+		  // イベント
+		  monthBox.addEventListener('change', (e) => {
+			dateBox.innerHTML = '';
+			const selectedMonth = e.target.value;
+			createOption('birthday_date', 1, datesOfYear[selectedMonth - 1], 1);
+		  });
+	
+		  yearBox.addEventListener('change', e => {
+			monthBox.innerHTML = '';
+			dateBox.innerHTML = '';
+			const updatedYear = e.target.value;
+			datesOfYear = [31, countDatesOfFeb(updatedYear), 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
+	
+			createOption('birthday_month', 1, 12, 1);
+			createOption('birthday_date', 1, datesOfYear[0], 1);
+		  });
+	
+		  // ロード時
+		  createOption('birthday_year', 1950, thisYear, thisYear);
+		  createOption('birthday_month', 1, 12, thisMonth);
+		  createOption('birthday_date', 1, datesOfYear[thisMonth - 1], thisDate);
+		})();
+	</script>
+	<!-- 入社日 -->
+	<script>
+	(function() {
+		  // ライブラリ
+		  const isLeapYear = year => (year % 4 === 0) && (year % 100 !== 0) || (year % 400 === 0);
+	
+		  const countDatesOfFeb = year => isLeapYear(year) ? 29 : 28;
+	
+		  const createOption = (id, startNum, endNum, current) => {
+			const selectDom = document.getElementById(id);
+			let optionDom = '';
+			for (let i = startNum-1; i <= endNum; i++) {
+	
+				if(i === startNum-1){
+					option = '<option value="' + '' + '"hidden selected>' + '--' + '</option>';
+				}else if (i === current) {
+				option = '<option value="' + i + '" >' + i + '</option>';
+			  } else {
+				option = '<option value="' + i + '">' + i + '</option>';
+			  }
+			  optionDom += option;
+			}
+			selectDom.insertAdjacentHTML('beforeend', optionDom);
+		  }
+	
+		  // DOM
+		  const yearBox = document.getElementById('joined_day_year');
+		  const monthBox = document.getElementById('joined_day_month');
+		  const dateBox = document.getElementById('joined_day_date');
+	
+		  // 日付データ
+		  const today = new Date();
+		  const thisYear = today.getFullYear();
+		  const thisMonth = today.getMonth() + 1;
+		  const thisDate = today.getDate();
+	
+		  let datesOfYear= [31, countDatesOfFeb(thisYear), 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
+	
+		  // イベント
+		  monthBox.addEventListener('change', (e) => {
+			dateBox.innerHTML = '';
+			const selectedMonth = e.target.value;
+			createOption('joined_day_date', 1, datesOfYear[selectedMonth - 1], 1);
+		  });
+	
+		  yearBox.addEventListener('change', e => {
+			monthBox.innerHTML = '';
+			dateBox.innerHTML = '';
+			const updatedYear = e.target.value;
+			datesOfYear = [31, countDatesOfFeb(updatedYear), 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
+	
+			createOption('joined_day_month', 1, 12, 1);
+			createOption('joined_day_date', 1, datesOfYear[0], 1);
+		  });
+	
+		  // ロード時
+		  createOption('joined_day_year', 1950, thisYear, thisYear);
+		  createOption('joined_day_month', 1, 12, thisMonth);
+		  createOption('joined_day_date', 1, datesOfYear[thisMonth - 1], thisDate);
+		})();
+	</script>
+	
+	<!-- 年齢 -->
+	<script>
+	(function() {
+		  var selectBox = document.getElementById('age');
+		  for (var i = 17; i <= 70; i++) {
+			  var option;
+			  if(i == 17){
+	             if(${empform.age != 0}){
+	            	 option = '<option value="' + ${empform.age} + '"hidden selected>' + ${empform.age} + '</option>';
+	             }else{
+	            	 option = '<option value="' + 0 + '"hidden selected>' + '--' + '</option>';
+	             }
+				  
+			  }else{
+			option = '<option value="' + i + '">' + i + '</option>';
+			  }
+			selectBox.insertAdjacentHTML('beforeend', option);
+		  }
+	
+		})();
+	</script>

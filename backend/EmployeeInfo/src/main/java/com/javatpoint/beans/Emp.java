@@ -3,9 +3,9 @@ package com.javatpoint.beans;
 import java.util.Date;
 
 import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
-import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.stereotype.Component;
 
 /**
@@ -18,45 +18,55 @@ import org.springframework.stereotype.Component;
 @Component
 public class Emp {
 	
-	@NotEmpty(message="NotEmpty.employeeForm.id")
+	@NotNull(message="IDが入力されていません。")
 	private int id;
 	
-	//@NotEmpty(message="NotEmpty.employeeForm.name")
-	@NotEmpty(message="名前が入力されていません")
+	@NotEmpty(message="名前が入力されていません。")
 	private String name;
 	
-	@NotEmpty(message="NotEmpty.employeeForm.gender")
+	@NotNull(message="性別が選択されていません。")
 	private int gender;
 	
-	@NotEmpty(message="NotEmpty.employeeForm.age")
+	@NotNull(message="年齢が入力されていません。")
 	private int age;
 	
-	@DateTimeFormat(pattern = "yyyy/MM/dd")
-	@NotEmpty(message="NotEmpty.employeeForm.birthday")
 	private Date birthday;
 	
-	@NotEmpty(message="NotEmpty.employeeForm.tel")
+	@NotEmpty(message="連絡先が入力されていません。")
 	private String tel;
 	
-	@NotEmpty(message="NotEmpty.employeeForm.address")
+	@NotEmpty(message="メードアドレスが入力されていまさん。")
 	private String address;
 	
-	@NotEmpty(message="NotEmpty.employeeForm.category")
+	@NotEmpty(message="職業が入力されていません。")
 	private String category;
 	
-	@DateTimeFormat(pattern = "yyyy/MM/dd")
-	@NotEmpty(message="NotEmpty.employeeForm.joined_day")
 	private Date joined_day;
 	
-	@NotEmpty(message="NotEmpty.employeeForm.password")
-	@Size(min=8, max=10, message="Size.employeeForm.password")
+	@NotEmpty(message="パスワードが入力されていません。")
+	@Size(min=8, max=10, message="パスワードの文字数を8文字以上10文字以下にしてください。")
 	private String password;
 	
-	@NotEmpty(message="NotEmpty.employeeForm.admin_auth")
+	@NotNull(message="管理者が選択されていません。")
 	private int admin_auth;
-
-	private float salary;
-	private String designation;
+	
+	@NotEmpty(message="生年月日(年)が入力されていません。")
+	private String birthday_year;
+	
+	@NotEmpty(message="生年月日(月)が入力されていません。")
+	private String birthday_month;
+	
+	@NotEmpty(message="生年月日(日)が入力されていません。")
+	private String birthday_date;
+	
+	@NotEmpty(message="入社日(年)が入力されていません。")
+    private String joined_day_year;
+	
+	@NotEmpty(message="入社日(月)が入力されていません。")
+	private String joined_day_month;
+	
+	@NotEmpty(message="入社日(日)が入力されていません。")
+	private String joined_day_date;
 
 	public int getId() {
 		return id;
@@ -145,21 +155,53 @@ public class Emp {
 	public void setAdmin_auth(int admin_auth) {
 		this.admin_auth = admin_auth;
 	}
-
-	public float getSalary() {
-		return salary;
+	
+	public String getBirthday_year() {
+		return birthday_year;
 	}
 
-	public void setSalary(float salary) {
-		this.salary = salary;
+	public void setBirthday_year(String birthday_year) {
+		this.birthday_year = birthday_year;
 	}
 
-	public String getDesignation() {
-		return designation;
+	public String getBirthday_month() {
+		return birthday_month;
 	}
 
-	public void setDesignation(String designation) {
-		this.designation = designation;
+	public void setBirthday_month(String birthday_month) {
+		this.birthday_month = birthday_month;
 	}
 
+	public String getBirthday_date() {
+		return birthday_date;
+	}
+
+	public void setBirthday_date(String birthday_date) {
+		this.birthday_date = birthday_date;
+	}
+
+	public String getJoined_day_year() {
+		return joined_day_year;
+	}
+
+	public void setJoined_day_year(String joined_day_year) {
+		this.joined_day_year = joined_day_year;
+	}
+
+	public String getJoined_day_month() {
+		return joined_day_month;
+	}
+
+	public void setJoined_day_month(String joined_day_month) {
+		this.joined_day_month = joined_day_month;
+	}
+
+	public String getJoined_day_date() {
+		return joined_day_date;
+	}
+
+	public void setJoined_day_date(String joined_day_date) {
+		this.joined_day_date = joined_day_date;
+	}
+	
 }

@@ -5,12 +5,55 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 
 <h1>社員一覧画面</h1>
+<!-- Theme CSS -->
+			<link href="<c:url value="/resources/css/base.css" />" rel="stylesheet">
+			<link href="<c:url value="/resources/css/employee_show.css" />" rel="stylesheet">
+		
+       <link href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" rel="stylesheet">
+
+       <script src="http://code.jquery.com/jquery-3.2.1.min.js"></script>
+<script>       
+    //サイドバー表示・非表示処理
+$(function(){
+  $('#up').click(function(){
+    $('.show').hide(100, function() {
  
-   <a href="empaddform">追加</a>
-    <br/>
-	<table border="2" width="70%" cellpadding="2">
+ $('.sidebar').show(500);
+});
+  });
+  $('#close').click(function(){
+    $('.sidebar').hide(500, function() {
+        $('.show').show(100);
+    });
+  });
+});
+</script>
+</head>
+<body>
+<!-- ヘッダー-->
+<header class="header">
+    <p id="login_name" class="name">山田太郎 様</p>
+</header>
+<article>
+    <button id="up" class="show"><i style="font-size:30px; color:blue" class="far fa-arrow-alt-circle-right"></i></button>
+    <div id="sidebar" class="sidebar item">
+
+        <nav class="nav">
+        <ul>
+            <li class="nav-item"><i style = "font-size:25px;" class="fas fa-user-alt"></i><a id="user_info" href="userInfoEdit">ユーザ情報へ　</a></li>
+          <li class="nav-item"><i style = "font-size:25px;" class="fas fa-crown"></i><a id="employee_show" href="empshowform">管理者ページへ</a></li>
+          <li class="nav-item"><i style = "font-size:25px;" class="fas fa-door-open"></i><a id="logout" href="logout">ログアウト　　</a></li>
+        </ul>
+        </ul>
+        </nav>
+        <p class="loginInfo">管理者権限でログインしています。</p>
+        <a href="#" id="close" class="backButton"><i style = "font-size:35px; color:#2C3539;" class="far fa-arrow-alt-circle-left"></i></a>
+    </div>
+         <a href="empaddform"><input type="submit" value="追加" id="button1"></a>
+	<table  class="content-table" border="2">
+	<thead>
 	<tr>
-		<th>社員番号 :</th>
+		<th>社員番号 </th>
 		<th>職業</th>
 		<th>名前</th>
 		<th>性別</th>
@@ -18,12 +61,13 @@
 		<th>TEL</th>
 		<th>メール</th>
 		<th>年齢</th>
-		<th>入社日 :</th>
+		<th>入社日 </th>
 		<th>管理者情報</th>
 		<th></th>
 		<th></th>
-		
 	</tr>
+	</thead>
+	<tbody>
 	<c:forEach var="emp" items="${list}">
 		<tr>
 			<td>${emp.id}</td>
@@ -36,9 +80,15 @@
 			<td>${emp.age}</td>
 			<td>${emp.joined_day}</td>
 			<td>${emp.admin_auth}</td>
-			<td><a href="editemp/${emp.id}">編集</a></td>
-			<td><a href="deleteemp/${emp.id}">削除</a></td>
+			  <td><a href="editemp/${emp.id}"><input type="submit" value="編集" id="button2"></a></td>
+          <td><a href="deleteemp/${emp.id}" onclick="if(!(confirm('削除してもよろしですか?')))return false"><input type="submit" value="削除" id="button3"></a></td>
 		</tr>
+		</tbody>
 	</c:forEach>
     </table>
+    
+    </article>
+    </body>
+    
+
  

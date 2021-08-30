@@ -1,0 +1,168 @@
+@charset "UTF-8";
+
+/* --------------------------------
+ * base
+ * -------------------------------- */
+html {
+  font-size: 62.5%;
+}
+body {
+  padding: 0;
+  background-color: #f0ffff;
+  color: #333;
+  font-size: 1.2rem;
+  font-family: "Hiragino Kaku Gothic ProN",  Meiryo,  sans-serif;
+}
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
+
+a:link, a:visited, a:hover, a:active {
+  color: #7C5119;
+  text-decoration: none;
+}
+
+
+
+article{
+    display:flex;
+    position:absolute;
+}
+
+/*【ヘッダー】-------------------------------------------------------*/
+
+.header{
+    width:100%;
+    max-height:45px;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    background-color: blue;
+    border-radius:5px;
+    box-shadow: 4px 4px 16px #848482;
+}
+
+
+.header .name{
+    margin-top:10px;
+    margin-left:20px;
+    padding-bottom:20px;
+    display:inline-block;
+    color:white;
+    letter-spacing: 4px;
+    font-weight:bold;
+    font-size:1.8rem;
+}
+
+.header .adminButton{
+    background-color: yellowgreen;
+    color:white;
+    border:none;
+    outline: none;
+    border-radius: 5px;
+    margin: 8px 30px;
+    padding:5px 20px 5px;
+    letter-spacing: 2px;
+    font-size:1.3rem;
+    display: block;
+    float:right;
+    box-shadow: 3px 3px 7px #000000;
+}
+
+.header .adminButton:hover{
+    cursor: pointer;
+    opacity:0.8;
+}
+
+
+
+/*【サイドバー】------------------------------------------------------*/
+
+/*サイドバーを表示するボタン*/
+.show{
+    position: relative;
+    top: 10px;
+    left: 10px;
+    z-index: 1;
+    display:none;
+    border: none;
+    background: transparent; /* 背景の灰色を消す */
+}
+
+.show:hover{
+    cursor: pointer;
+    opacity:0.5;
+}
+
+.sidebar{
+    width:200px;
+    height:650px;
+    z-index: 1;
+    max-height:700px;
+    background-color:#00bfff;
+    padding:25px 0;
+    border-bottom: none;
+    text-align:center;
+    border-radius:5px;
+    box-shadow: 4px 4px 8px #848482;
+    position: relative;
+    top: 0px;
+    left: 0px;
+}
+
+nav ul {
+    padding:0;
+    list-style:none;
+    text-align:center;
+}
+
+.nav{
+    margin:35px auto 10px;
+  }
+  
+  .nav-item{
+    padding-top:10px;
+    padding-bottom: 10px;
+    letter-spacing: 5px;
+    font-weight:bold;
+    font-size:1.3rem;
+    border-bottom: 0.5px solid #f0ffff;
+  }
+  
+  .nav-item a{
+    margin-left: 10px;
+    color:white;
+    display: inline-block;
+  }
+
+  .nav-item a:hover{
+    cursor: pointer;
+    opacity:0.8;
+  }
+
+  .sidebar .loginInfo{
+      margin:60px 0 60px;
+      margin-left:0;
+      color:white;
+      letter-spacing: 1px;
+      font-size:1.0rem;
+  }
+
+  .backButton:hover{
+    cursor: pointer;
+    opacity:0.5;
+  }
+
+
+
+  /*【コンテント】--------------------------------------------------------*/
+  .content {
+    position:fixed;
+    background-color: #f0ffff;
+    width:100%;
+    text-align:center;
+    max-height:700px;
+  }
+
+
+
