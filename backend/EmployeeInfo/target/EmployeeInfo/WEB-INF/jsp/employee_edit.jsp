@@ -5,7 +5,7 @@
 <html lang="ja">
 <head>
   <meta charset="UTF-8">
-  <title>ユーザ情報画面</title>
+  <title>社員情報編集画面</title>
   <link href="<c:url value="/resources/css/base.css" />" rel="stylesheet">
   <link href="<c:url value="/resources/css/user_info.css" />" rel="stylesheet">
   <link href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" rel="stylesheet">
@@ -34,7 +34,7 @@ $(function(){
 <header class="header">
     <p id="login_name" class="name">
     <c:out value="${sessionScope.userInfo.name}"/>様</p>
-    <button id="admin_button" class="adminButton" onclick="location.href='empshowform'">管理者ページへ</button>
+    <button id="admin_button" class="adminButton" onclick="location.href='/EmployeeInfo/empshowform'">管理者ページへ</button>
 </header>
 <article>
     <button id="up" class="show"><i style="font-size:35px; color:blue" class="far fa-arrow-alt-circle-right"></i></button>
@@ -43,7 +43,9 @@ $(function(){
         <nav class="nav">
         <ul>
           <li class="nav-item"><i style = "font-size:25px;" class="fas fa-user-alt"></i><a id="user_info" href="/EmployeeInfo/user_info">ユーザ情報へ　</a></li>
+		  <c:if test="${sessionScope.userInfo.admin_auth == 1}">
 		  <li class="nav-item"><i style = "font-size:25px;" class="fas fa-crown"></i><a id="admin_page" href="/EmployeeInfo/empshowform">管理者ページへ</a></li>
+          </c:if>
           <li class="nav-item"><i style = "font-size:25px;" class="fas fa-door-open"></i><a id="logout" href="/EmployeeInfo/logout">ログアウト　　</a></li>
         </ul>
         </nav>
@@ -55,8 +57,7 @@ $(function(){
       <!-- ここに各々のコンテンツを差し込む　----------------------------------------------------------------------->
        <form:form method="post" action="/EmployeeInfo/editsave">
        <p id="error">${errorMsg}</p>
-         <!-- <table id="main"> -->
-         <table >
+         <table id="main">
             <tr>
               <th>社員番号</th>
       
@@ -129,7 +130,7 @@ $(function(){
             <tr>
               <th>パスワード</th>
               <td class="cp_iptxt">
-              <form:input path="password" size="16" maxlength="12" placeholder="パスワード入力" />
+              <form:input type="password"  path="password" size="16" maxlength="12" placeholder="パスワード入力" />
               </td>
             </tr>
       
@@ -168,9 +169,9 @@ $(function(){
         			  option = '<option value="' + '' + '"hidden selected>' + '--' + '</option>';
         		  }
           }else if (i === current) {
-            option = '<option disabled value="' + i + '" >' + i + '</option>';
+            option = '<option  value="' + i + '" >' + i + '</option>';
           } else {
-            option = '<option disabled value="' + i + '">' + i + '</option>';
+            option = '<option  value="' + i + '">' + i + '</option>';
           }
           optionDom += option;
         }
@@ -360,9 +361,10 @@ $(function(){
       for (var i = 17; i <= 70; i++) {
         var option;
         if(i == 17){
-            option = '<option value="' + ${userInfo.age} + '"hidden selected>' + ${userInfo.age} + '</option>';
+  
+          option = '<option value="' + ${userInfo.age} + '"hidden selected>' + ${userInfo.age} + '</option>';
         }else{
-            option = '<option  value="' + i + '">' + i + '</option>';
+        option = '<option  value="' + i + '">' + i + '</option>';
         }
         selectBox.insertAdjacentHTML('beforeend', option);
       }

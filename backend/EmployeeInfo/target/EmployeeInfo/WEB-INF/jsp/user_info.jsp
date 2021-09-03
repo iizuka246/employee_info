@@ -43,7 +43,9 @@ $(function(){
         <nav class="nav">
         <ul>
           <li class="nav-item"><i style = "font-size:25px;" class="fas fa-user-alt"></i><a id="user_info" href="/EmployeeInfo/user_info">ユーザ情報へ　</a></li>
+		  <c:if test="${sessionScope.userInfo.admin_auth == 1}">
 		  <li class="nav-item"><i style = "font-size:25px;" class="fas fa-crown"></i><a id="admin_page" href="/EmployeeInfo/empshowform">管理者ページへ</a></li>
+          </c:if>
           <li class="nav-item"><i style = "font-size:25px;" class="fas fa-door-open"></i><a id="logout" href="/EmployeeInfo/logout">ログアウト　　</a></li>
         </ul>
         </nav>
@@ -55,8 +57,7 @@ $(function(){
       <!-- ここに各々のコンテンツを差し込む　----------------------------------------------------------------------->
        <form:form method="post" action="userInfoEdit">
        <p id="error">${errorMsg}</p>
-         <!-- <table id="main"> -->
-         <table >
+         <table id="main">
             <tr>
               <th>社員番号</th>
       

@@ -28,8 +28,8 @@ $(function(){
   });
 });
 </script>
-  </head>
-  <body>
+</head>
+<body>
 <!-- ヘッダー-->
 <header class="header">
     <p id="login_name" class="name"><c:out value="${sessionScope.userInfo.name}"/>様</p></p>
@@ -41,7 +41,9 @@ $(function(){
         <nav class="nav">
         <ul>
             <li class="nav-item"><i style = "font-size:25px;" class="fas fa-user-alt"></i><a id="user_info" href="/EmployeeInfo/user_info">ユーザ情報へ　</a></li>
+			<c:if test="${sessionScope.userInfo.admin_auth == 1}">
 			<li class="nav-item"><i style = "font-size:25px;" class="fas fa-crown"></i><a id="admin_page" href="/EmployeeInfo/empshowform">管理者ページへ</a></li>
+            </c:if>
             <li class="nav-item"><i style = "font-size:25px;" class="fas fa-door-open"></i><a id="logout" href="/EmployeeInfo/logout">ログアウト　　</a></li>
         </ul>
         </nav>
@@ -69,8 +71,7 @@ $(function(){
 	  <form:errors path="joined_day_month" />
 	  <form:errors path="joined_day_date" />
 	  </p>
-		<!-- <table id="main"> -->
-	    <table >
+		<table id="main">
 				<tr>
 					<th>社員番号</th>
 					<td class="cp_iptxt">

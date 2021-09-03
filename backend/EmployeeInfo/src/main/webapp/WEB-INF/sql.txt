@@ -1,6 +1,6 @@
 CREATE DATABASE springdb DEFAULT CHARACTER SET utf8 COLLATE utf8_general_ci;
 
-CREATE TABLE USELOGIN(
+CREATE TABLE springdb.USELOGIN(
 id INT(8) NOT NULL,
 password VARCHAR(10),
 PRIMARY KEY(id));
@@ -21,5 +21,8 @@ CREATE TABLE springdb.EMPLOYEE(
 
 insert into uselogin
 (id,password) values("10000001","11111111");
+
+insert into employee(id,name,age,gender,birthday,tel,address,category,joined_day,admin_auth) 
+values("10000001","田中",20,1,"2000-01-01","080-7011-4717","yamada@gmail.com","IT","2020-11-01",0);
 
 please login with above value

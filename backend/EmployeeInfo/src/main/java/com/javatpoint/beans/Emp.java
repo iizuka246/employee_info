@@ -44,28 +44,28 @@ public class Emp {
 	private Date joined_day;
 	
 	@NotEmpty(message="パスワードが入力されていません。")
-	@Size(min=8, max=10, message="パスワードの文字数を8文字以上10文字以下にしてください。")
+	@Size(min=8, max=10, message="パスワードの文字数を8文字以上10文字以下にしてください。。")
 	private String password;
 	
 	@NotNull(message="管理者が選択されていません。")
 	private int admin_auth;
 	
-	@NotEmpty(message="生年月日(年)が入力されていません。")
+	@NotEmpty(message="生年月日(年)が選択されていません。")
 	private String birthday_year;
 	
-	@NotEmpty(message="生年月日(月)が入力されていません。")
+	@NotEmpty(message="生年月日(月)が選択されていません。")
 	private String birthday_month;
 	
-	@NotEmpty(message="生年月日(日)が入力されていません。")
+	@NotEmpty(message="生年月日(日)が選択されていません。")
 	private String birthday_date;
 	
-	@NotEmpty(message="入社日(年)が入力されていません。")
+	@NotEmpty(message="入社日(年)が選択されていません。")
     private String joined_day_year;
 	
-	@NotEmpty(message="入社日(月)が入力されていません。")
+	@NotEmpty(message="入社日(月)が選択されていません。")
 	private String joined_day_month;
 	
-	@NotEmpty(message="入社日(日)が入力されていません。")
+	@NotEmpty(message="入社日(日)が選択されていません。")
 	private String joined_day_date;
 
 	public int getId() {
