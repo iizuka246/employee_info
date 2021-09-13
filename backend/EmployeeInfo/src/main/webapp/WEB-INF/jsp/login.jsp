@@ -21,7 +21,7 @@
 						<tr>							
 						 	<td>
                                  <form:input type="text" class="text" path="id" required="required" 
-                                 oninvalid="this.setCustomValidity(' ')" size="8" placeholder="IDを入力してください"  />
+                                 oninvalid="this.setCustomValidity(' ')" oninput="setCustomValidity('')" size="8" placeholder="IDを入力してください"  />
                          	</td>
  	    				</tr>
  	    				<tr>

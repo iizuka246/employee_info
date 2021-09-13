@@ -76,7 +76,7 @@ $(function(){
 					<th>社員番号</th>
 					<td class="cp_iptxt">
 					 <form:input type="text" path="id" size="16" maxlength='8' required="required" 
-                     oninvalid="this.setCustomValidity('IDが入力されていません。')" placeholder="社員番号入力" />
+                     oninvalid="this.setCustomValidity('IDが入力されていません。')" oninput="setCustomValidity('')" placeholder="社員番号入力" />
 					</td>
 				</tr>
 	
