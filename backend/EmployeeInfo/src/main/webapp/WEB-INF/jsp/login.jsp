@@ -20,7 +20,7 @@
 						</tr>
 						<tr>							
 						 	<td>
-                                 <form:input type="text" class="text" path="id" required="required" 
+                                 <form:input type="text" class="text" path="id" required="required" maxlength="10" 
                                  oninvalid="this.setCustomValidity(' ')" oninput="setCustomValidity('')" size="8" placeholder="IDを入力してください"  />
                          	</td>
  	    				</tr>

@@ -54,8 +54,8 @@ public int saveEmployee(Emp p) throws ParseException{
  */
 public int saveUser(Emp p){  
     String sql="insert into uselogin(id,password) values('"
-              +p.getId()+"',"
-    	      +p.getPassword()+")";  
+              +p.getId()+"','"
+    	      +p.getPassword()+"')";  
     return template.update(sql); 
 }  
 

@@ -20,7 +20,8 @@
 						</tr>
 						<tr>							
 						 	<td>
-                                 <form:input type="text" class="text" path="id" value="" size="8" placeholder="IDを入力してください" />
+                                 <form:input type="text" class="text" path="id" required="required" maxlength="10" 
+                                 oninvalid="this.setCustomValidity(' ')" oninput="setCustomValidity('')" size="8" placeholder="IDを入力してください"  />
                          	</td>
  	    				</tr>
  	    				<tr>
@@ -30,7 +31,7 @@
  	    				</tr>
  	                    <tr>
 	                      	<td>
-		                          <form:input type="password" class="text" path="password" value="" size="12"
+		                          <form:input type="password" class="text" path="password" size="10"
 		                          placeholder="Passwordを入力してください" />
 	                      	</td>
                       	</tr>

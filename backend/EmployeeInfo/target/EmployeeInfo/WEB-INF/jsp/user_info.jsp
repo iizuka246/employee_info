@@ -34,7 +34,9 @@ $(function(){
 <header class="header">
     <p id="login_name" class="name">
     <c:out value="${sessionScope.userInfo.name}"/>様</p>
+    <c:if test="${sessionScope.userInfo.admin_auth == 1}">
     <button id="admin_button" class="adminButton" onclick="location.href='empshowform'">管理者ページへ</button>
+    </c:if>
 </header>
 <article>
     <button id="up" class="show"><i style="font-size:35px; color:blue" class="far fa-arrow-alt-circle-right"></i></button>

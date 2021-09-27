@@ -18,7 +18,9 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+
 import com.javatpoint.beans.Emp;
+import com.javatpoint.beans.FileEntity;
 import com.javatpoint.dao.EmpDao;
 
 /**
@@ -224,5 +226,17 @@ public class EmpController {
 		String password = dao.getUserPassword(id);
 		userInfo.setPassword(password);
 		return userInfo;
+	}
+	
+	/**
+	 * ログイン画面表示処理
+	 * 
+	 * @param m 社員情報モデル
+	 * @return ログイン画面へ遷移する
+	 */
+	@RequestMapping(value = "/selectFolder", method= RequestMethod.GET)
+	public String selectFolder(Model m) {
+		m.addAttribute("command", new FileEntity());
+		return "fileUpload";
 	}
 }

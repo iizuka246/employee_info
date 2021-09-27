@@ -70,6 +70,7 @@ $(function(){
 	  <form:errors path="joined_day_year" />
 	  <form:errors path="joined_day_month" />
 	  <form:errors path="joined_day_date" />
+	  <form:errors path="password" />
 	  </p>
 		<table id="main">
 				<tr>
@@ -258,7 +259,29 @@ $(function(){
 			for (let i = startNum-1; i <= endNum; i++) {
 	
 				if(i === startNum-1){
-					option = '<option value="' + '' + '"hidden selected>' + '--' + '</option>';
+					if(id === 'joined_day_year'){
+						if(${empform.joined_day_year >= 1950} && ${empform.joined_day_year <= year} ){
+							option = '<option value="' + ${empform.joined_day_year} + '"hidden selected>' + ${empform.joined_day_year} + '</option>';
+						}else{
+							option = '<option value="' + '' + '"hidden selected>' + '--' + '</option>';
+						}
+					}
+					
+				if(id === 'joined_day_month'){
+					if(${empform.joined_day_month >= 1 } && ${empform.joined_day_month <= 12 }){
+						option = '<option value="' + ${empform.joined_day_month}  + '"hidden selected>' + ${empform.joined_day_month} + '</option>';
+					}else{
+						option = '<option value="' + '' + '"hidden selected>' + '--' + '</option>';
+					}
+				}
+					
+				if(id === 'joined_day_date'){
+					if(${empform.joined_day_date >= 1 } && ${empform.joined_day_date <= 31 }){
+						option = '<option value="' + ${empform.joined_day_date} + '"hidden selected>' + ${empform.joined_day_date} + '</option>';
+					}else{
+						option = '<option value="' + '' + '"hidden selected>' + '--' + '</option>';
+					} 
+				}
 				}else if (i === current) {
 				option = '<option value="' + i + '" >' + i + '</option>';
 			  } else {
